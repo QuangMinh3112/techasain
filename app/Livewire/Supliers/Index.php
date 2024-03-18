@@ -1,57 +1,54 @@
 <?php
 
-namespace App\Livewire\User;
+namespace App\Livewire\Supliers;
 
+use App\Models\supplier;
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
-use App\Models\User;
 use Livewire\Attributes\On;
 
-use function Laravel\Prompts\text;
-
 #[Layout('layout.app.layout')]
-#[Title('Quản lý tài khoản')]
+#[Title('Quản lý nhà cung cấp')]
+
 class Index extends Component
 {
     use WithPagination;
     public $page = 10;
 
-
     public $mySelect = [];
     public $selectAll = false;
     public $firstId = null;
 
-
     public function render()
     {
-        $users = User::paginate($this->page);
-        $this->firstId = $users[0]->id;
-        return view('livewire.user.index', [
-            'users' => $users
+
+        $suppliers = supplier::paginate($this->page);
+        $this->firstId = $suppliers[0]->id;
+        return view('livewire.supliers.index', [
+            'suppliers' => $suppliers,
         ]);
     }
-    public function deleteUser($id)
+    public function deleteSupplier($id)
     {
-        $user = User::find($id);
+        $supplier = supplier::find($id);
         $this->dispatch(
             'confirm',
             title: 'Bạn đã chắc chưa ?',
-            text: 'Bạn có chắc xoá người dùng ' . $user->name,
+            text: 'Bạn có chắc xoá nhà cung cấp ' . $supplier->name,
             confirmText: 'Có, tôi đã chắc',
             cancelText: 'Không',
-            userId: $user->id,
+            userId: $supplier->id,
             method: 'deleted',
         );
     }
-
     #[On('deleted')]
     public function deleteConfirmed($id)
     {
-        $user = User::find($id);
-        if ($user) {
-            $user->delete();
+        $supplier = supplier::find($id);
+        if ($supplier) {
+            $supplier->delete();
         }
     }
     #[On('resetMySelect')]
@@ -71,7 +68,7 @@ class Index extends Component
     public function updateSelectAll()
     {
         if ($this->selectAll == true) {
-            $this->mySelect = User::where('id', '>=', $this->firstId)
+            $this->mySelect = supplier::where('id', '>=', $this->firstId)
                 ->orderBy('id', 'asc')
                 ->limit($this->page)
                 ->pluck('id');
@@ -94,7 +91,7 @@ class Index extends Component
             $this->dispatch(
                 'confirm',
                 title: 'Bạn đã chắc chưa ?',
-                text: 'Bạn có chắc xoá ' . count($this->mySelect) . ' người dùng',
+                text: 'Bạn có chắc xoá ' . count($this->mySelect) . ' nhà cung cấp',
                 confirmText: 'Có, tôi đã chắc',
                 cancelText: 'Không',
                 userId: $this->mySelect,
@@ -105,7 +102,7 @@ class Index extends Component
     #[On('deletedAll')]
     public function deletedAll($id)
     {
-        User::destroy($id);
+        supplier::destroy($id);
         $this->resetMySelect();
     }
 }

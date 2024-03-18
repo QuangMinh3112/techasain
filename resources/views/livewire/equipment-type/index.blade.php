@@ -3,7 +3,7 @@
         <div class="col-12 d-flex align-items-stretch">
             <div class="card w-100">
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-semibold mb-4">Danh sách tài khoản</h5>
+                    <h5 class="card-title fw-semibold mb-4">Danh sách loại thiết bị</h5>
                     <div class="row d-flex">
                         <div class="col-6">
                             <div class="input-group mb-3">

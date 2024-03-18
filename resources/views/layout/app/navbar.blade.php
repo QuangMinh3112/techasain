@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="nav-item">
-                <h6>Hello</h6>
+            <h6>Hello</h6>
         </li>
     </ul>
     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
@@ -32,7 +32,7 @@
                             <i class="ti ti-user fs-6"></i>
                             <p class="mb-0 fs-3">Tài khoản của tôi</p>
                         </a>
-                        <a href="./authentication-login.html" class="btn btn-outline-danger mx-3 mt-2 d-block">Đăng
+                        <a href="{{ route('auth.logout') }}" class="btn btn-outline-danger mx-3 mt-2 d-block">Đăng
                             xuất</a>
                     </div>
                 </div>

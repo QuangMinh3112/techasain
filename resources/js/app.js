@@ -14,6 +14,7 @@ window.addEventListener('alert', (event) => {
 window.addEventListener('confirm', (event) => {
     let data = event.detail;
     let userId = (data.userId);
+    console.log(userId);
     Swal.fire({
         title: data.title,
         text: data.text,
@@ -25,7 +26,7 @@ window.addEventListener('confirm', (event) => {
         cancelButtonText: data.cancelText,
     }).then((result) => {
         if (result.isConfirmed) {
-            Livewire.dispatch('deleted', { id: userId });
+            Livewire.dispatch(data.method, { id: userId });
             Swal.fire({
                 title: "Xoá thành công!",
                 text: "Dữ liệu bạn chọn đã được xoá",
@@ -33,4 +34,10 @@ window.addEventListener('confirm', (event) => {
             });
         }
     });
-})
+});
+document.querySelectorAll('.page-item').forEach(function (item) {
+    item.addEventListener('click', function (event) {
+        Livewire.dispatch('resetMySelect');
+    });
+});
+

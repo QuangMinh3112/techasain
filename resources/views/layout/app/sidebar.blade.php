@@ -35,12 +35,32 @@
                         <span class="hide-menu">Thông tin tài khoản</span>
                     </a>
                 </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Quản lý thiết bị</span>
+                </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.suplier.list') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-alert-circle"></i>
+                            <i class="ti ti-user"></i>
                         </span>
-                        <span class="hide-menu">Thông tin nhóm quyền</span>
+                        <span class="hide-menu">Nhà cung cấp</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.equipment_type.list') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-star"></i>
+                        </span>
+                        <span class="hide-menu">Loại thiết bị</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.equipment_type.list') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-package"></i>
+                        </span>
+                        <span class="hide-menu">Loại thiết bị</span>
                     </a>
                 </li>
             </ul>

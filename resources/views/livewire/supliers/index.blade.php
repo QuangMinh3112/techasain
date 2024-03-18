@@ -40,7 +40,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <x-button.create :route="'admin.user.create'" :name="'Thêm mới'"></x-button.create>
+                                <x-button.create :route="'admin.suplier.create'" :name="'Thêm mới'"></x-button.create>
                             </div>
                         </div>
                     </div>
@@ -52,17 +52,20 @@
                                         <input class="form-check-input mt-0" type="checkbox" wire:model.live='selectAll'
                                             wire:click.live="updateSelectAll()">
                                         <input class="form-check-input mt-0" type="hidden" wire:model.live='firstId'
-                                            value="{{ $users[0]->id }}">
+                                            value="{{ $suppliers[0]->id }}">
 
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">STT</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Họ và tên</h6>
+                                        <h6 class="fw-semibold mb-0">Code</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Tên đăng nhập</h6>
+                                        <h6 class="fw-semibold mb-0">Tên nhà cung cấp</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Số điện thoại</h6>
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">Trạng thái</h6>
@@ -79,7 +82,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $index => $data)
+                                @foreach ($suppliers as $index => $data)
                                     <tr>
                                         <td class="border-bottom-0">
                                             <input class="form-check-input mt-0" type="checkbox"
@@ -88,14 +91,17 @@
                                         </td>
                                         <td class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">
-                                                {{ $users->firstItem() + $index }}
+                                                {{ $suppliers->firstItem() + $index }}
                                             </h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">{{ $data->code }}</h6>
                                         </td>
                                         <td class="border-bottom-0">
                                             <h6 class="fw-semibold mb-1">{{ $data->name }}</h6>
                                         </td>
                                         <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->email }}</p>
+                                            <p class="mb-0 fw-normal">{{ $data->phone_number }}</p>
                                         </td>
                                         <td class="border-bottom-0">
                                             @if ($data->status == 0)
@@ -111,8 +117,8 @@
                                             <p class="mb-0 fw-normal">{{ $data->updated_at->format('d/m/Y') }}</p>
                                         </td>
                                         <td class="border-bottom-0">
-                                            <x-button.edit :route="'admin.user.edit'" :id="$data->id"></x-button.edit>
-                                            <x-button.delete :action="'deleteUser'" :id="$data->id"></x-button.delete>
+                                            <x-button.edit :route="'admin.suplier.edit'" :id="$data->id"></x-button.edit>
+                                            <x-button.delete :action="'deleteSupplier'" :id="$data->id"></x-button.delete>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -136,12 +142,12 @@
                             </div>
                             <div class="flex space-x-4 items-center">
                                 <div class="flex items-center">
-                                    {{ $users->links('Layout.app.livewire-pagination') }}
+                                    {{ $suppliers->links('Layout.app.livewire-pagination') }}
                                 </div>
                                 <span class="float-end">
                                     <h6>
-                                        Hiển thị {{ $users->firstItem() }} - {{ $users->lastItem() }} của
-                                        {{ $users->total() }} kết quả
+                                        Hiển thị {{ $suppliers->firstItem() }} - {{ $suppliers->lastItem() }} của
+                                        {{ $suppliers->total() }} kết quả
                                     </h6>
                                 </span>
                             </div>

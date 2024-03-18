@@ -33,7 +33,6 @@
             </div>
         </div>
     </div>
-
     <script src="{{ asset('admin_dashbroad/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin_dashbroad/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin_dashbroad/assets/js/sidebarmenu.js') }}"></script>
@@ -42,17 +41,7 @@
     <script src="{{ asset('admin_dashbroad/assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('admin_dashbroad/assets/js/dashboard.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    {{-- @push('scripts')
-        <script>
-            window.addEventListener('swal:modal', event => {
-                swal({
-                    title: event.detail.title,
-                    text: event.detail.text,
-                    icon: event.detail.type,
-                })
-            })
-        </script>
-    @endpush --}}
+    @stack('js')
 </body>
 
 </html>

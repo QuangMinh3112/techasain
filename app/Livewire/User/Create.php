@@ -45,7 +45,7 @@ class Create extends Component
                 'account_code' => $validated['account_code'],
                 'status' => 1,
                 'email' => $validated['email'],
-                'password' => Hash::make($validated['email']),
+                'password' => Hash::make($validated['password']),
                 'created_by' => Auth::user()->id,
             ]);
             $this->dispatch(
