@@ -11,12 +11,12 @@ class Create extends Component
     /**
      * Create a new component instance.
      */
-    public $route;
-    public function __construct($route)
-    {
-        //
-        $this->route = $route;
-    }
+    // public $route;
+    // public function __construct($route)
+    // {
+    //     //
+    //     $this->route = $route;
+    // }
 
     /**
      * Get the view / contents that represent the component.

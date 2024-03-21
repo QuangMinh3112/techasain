@@ -54,7 +54,7 @@ class Edit extends Component
                 'date_of_birth' => $validated['date_of_birth'],
                 'identity_card' => $validated['identity_card'],
                 'address' => $validated['address'],
-                'phone_number' => $validated['name'],
+                'phone_number' => $validated['phone_number'],
                 'status' => $this->status,
             ]);
             $this->dispatch(
@@ -65,6 +65,7 @@ class Edit extends Component
                 timer: 1500,
                 confirm: false
             );
+            $this->dispatch('user-reload-table')->to(\App\Livewire\User\Index::class);
         }
     }
     public function validationAttributes()

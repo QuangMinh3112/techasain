@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EquipmentType>
  */
 class EquipmentTypeFactory extends Factory
 {
@@ -14,8 +14,6 @@ class EquipmentTypeFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = \App\Models\equipment_type::class;
-
     public function definition(): array
     {
         return [

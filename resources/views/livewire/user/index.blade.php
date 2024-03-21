@@ -17,9 +17,10 @@
                         <div class="col-6">
                             <div class="d-flex gap-3 float-end">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-info">Hành động</button>
-                                    <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                                    <button type="button"
+                                        class="btn btn-info dropdown-toggle dropdown-toggle-split rounded"
                                         data-bs-toggle="dropdown" aria-expanded="false">
+                                        Hành động
                                         <span class="visually-hidden">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu">
@@ -40,7 +41,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <x-button.create :route="'admin.user.create'" :name="'Thêm mới'"></x-button.create>
+                                <x-button.create :name="'Thêm mới'" :component="'user.create'"
+                                    :target="'createUser'"></x-button.create>
                             </div>
                         </div>
                     </div>
@@ -52,8 +54,7 @@
                                         <input class="form-check-input mt-0" type="checkbox" wire:model.live='selectAll'
                                             wire:click.live="updateSelectAll()">
                                         <input class="form-check-input mt-0" type="hidden" wire:model.live='firstId'
-                                            value="{{ $users[0]->id }}">
-
+                                            value="{{ $firstId }}">
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">STT</h6>
@@ -80,41 +81,45 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $index => $data)
-                                    <tr>
-                                        <td class="border-bottom-0">
-                                            <input class="form-check-input mt-0" type="checkbox"
-                                                wire:model.live='mySelect' value="{{ $data->id }}"
-                                                wire:click.live="updateMySelect()">
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">
-                                                {{ $users->firstItem() + $index }}
-                                            </h6>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1">{{ $data->name }}</h6>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->email }}</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            @if ($data->status == 0)
-                                                <span class="badge text-bg-dark">Ngừng hoạt động</span>
-                                            @else
-                                                <span class="badge text-bg-success">Đang hoạt động</span>
-                                            @endif
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->getUser() }}</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->updated_at->format('d/m/Y') }}</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <x-button.edit :route="'admin.user.edit'" :id="$data->id"></x-button.edit>
-                                            <x-button.delete :action="'deleteUser'" :id="$data->id"></x-button.delete>
-                                        </td>
-                                    </tr>
+                                    <div wire:key="{{ rand() . $data->id }}">
+                                        <tr>
+                                            <td class="border-bottom-0">
+                                                <input class="form-check-input mt-0" type="checkbox"
+                                                    wire:model.live='mySelect' value="{{ $data->id }}"
+                                                    wire:click.live="updateMySelect()">
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">
+                                                    {{ $users->firstItem() + $index }}
+                                                </h6>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-1">{{ $data->name }}</h6>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal">{{ $data->email }}</p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                @if ($data->status == 0)
+                                                    <span class="badge text-bg-dark">Ngừng hoạt động</span>
+                                                @else
+                                                    <span class="badge text-bg-success">Đang hoạt động</span>
+                                                @endif
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal">{{ $data->getUser() }}</p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal">{{ $data->updated_at->format('d/m/Y') }}</p>
+                                            </td>
+                                            <td class="border-bottom-0 d-flex gap-2">
+                                                <x-button.edit :component="'user.edit'" :target="'editUser'" :data="$data"
+                                                    :wire:key="$data->id"></x-button.edit>
+                                                <x-button.delete :action="'deleteUser'" :id="$data->id"
+                                                    :wire:key="$data->id"></x-button.delete>
+                                            </td>
+                                        </tr>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>

@@ -17,13 +17,12 @@ class Index extends Component
 {
     use WithPagination;
     public $page = 10;
-
-
     public $mySelect = [];
     public $selectAll = false;
     public $firstId = null;
 
 
+    #[On('user-reload-table')]
     public function render()
     {
         $users = User::paginate($this->page);
@@ -52,6 +51,7 @@ class Index extends Component
         $user = User::find($id);
         if ($user) {
             $user->delete();
+            $this->render();
         }
     }
     #[On('resetMySelect')]
@@ -70,10 +70,11 @@ class Index extends Component
     }
     public function updateSelectAll()
     {
+        $userCount = User::paginate($this->page)->count();
         if ($this->selectAll == true) {
             $this->mySelect = User::where('id', '>=', $this->firstId)
                 ->orderBy('id', 'asc')
-                ->limit($this->page)
+                ->limit($userCount)
                 ->pluck('id');
         } else {
             $this->mySelect = [];
@@ -107,5 +108,6 @@ class Index extends Component
     {
         User::destroy($id);
         $this->resetMySelect();
+        $this->dispatch('user-reload-table')->to(\App\Livewire\User\Index::class);
     }
 }

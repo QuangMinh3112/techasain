@@ -56,6 +56,7 @@ class Create extends Component
                 timer: 1500,
                 confirm: false
             );
+            $this->dispatch('user-reload-table');
             $this->reset();
         }
     }
