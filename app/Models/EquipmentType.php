@@ -5,16 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class equipment_type extends Model
+class EquipmentType extends Model
 {
     use HasFactory;
     protected $table = 'equipment_types';
     protected $fillable = [
         'code',
         'name',
-        'description',
         'created_by',
         'updated_by',
-        'status'
+        'status',
     ];
+    public function getUser()
+    {
+        $created_by = User::find($this->created_by);
+        if ($created_by) {
+            return $created_by->name;
+        } else {
+            return "Rỗng";
+        }
+    }
 }

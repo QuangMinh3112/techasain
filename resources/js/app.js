@@ -1,5 +1,13 @@
 import './bootstrap';
 
+// import Alpine from 'alpinejs';
+
+// window.Alpine = Alpine;
+
+// Alpine.start();
+
+
+
 window.addEventListener('alert', (event) => {
     let data = event.detail;
     Swal.fire({
@@ -14,7 +22,6 @@ window.addEventListener('alert', (event) => {
 window.addEventListener('confirm', (event) => {
     let data = event.detail;
     let userId = (data.userId);
-    console.log(userId);
     Swal.fire({
         title: data.title,
         text: data.text,
@@ -28,8 +35,8 @@ window.addEventListener('confirm', (event) => {
         if (result.isConfirmed) {
             Livewire.dispatch(data.method, { id: userId });
             Swal.fire({
-                title: "Xoá thành công!",
-                text: "Dữ liệu bạn chọn đã được xoá",
+                title: "Đã thực hiện!",
+                text: "",
                 icon: "success"
             });
         }
@@ -40,4 +47,22 @@ document.querySelectorAll('.page-item').forEach(function (item) {
         Livewire.dispatch('resetMySelect');
     });
 });
+
+// document.addEventListener('livewire:navigated', () => {
+//     console.log("navigated");
+//     Livewire.start();
+// })
+
+// $(document).ready(function () {
+//     $('#userSelect2').select2({
+//         placeholder: "Chọn",
+//         allowClear: true,
+//     });
+//     $('#userSelect2').on('change focus', function (event) {
+//         Livewire.dispatch('updateUser', { id: event.target.value });
+//         $(this).select2('close');
+//         $(this).select2('open');
+//     })
+// });
+
 

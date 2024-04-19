@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipment_types', function (Blueprint $table) {
+        Schema::create('equipment_categories', function (Blueprint $table) {
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->text('description');
+            $table->string('description');
+            $table->integer('status')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
-            $table->integer('status');
+            $table->integer('equipment_type_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipment_types');
+        Schema::dropIfExists('equipment_categories');
     }
 };

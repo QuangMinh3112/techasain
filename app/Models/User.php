@@ -54,12 +54,14 @@ class User extends Authenticatable
     public function getUser()
     {
         $created_by = User::find($this->created_by);
-        if($created_by)
-        {
+        if ($created_by) {
             return $created_by->name;
-        }
-        else {
+        } else {
             return "Rỗng";
         }
+    }
+    public function scopeNameSearch($query, $value)
+    {
+        $query->where('name', 'like', '%' . $value . '%');
     }
 }

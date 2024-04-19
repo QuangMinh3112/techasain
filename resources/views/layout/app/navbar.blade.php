@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <h6>Hello</h6>
+            <h6>{{ $title }}</h6>
         </li>
     </ul>
     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">

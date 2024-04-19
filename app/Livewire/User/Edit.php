@@ -54,7 +54,7 @@ class Edit extends Component
                 'date_of_birth' => $validated['date_of_birth'],
                 'identity_card' => $validated['identity_card'],
                 'address' => $validated['address'],
-                'phone_number' => $validated['name'],
+                'phone_number' => $validated['phone_number'],
                 'status' => $this->status,
             ]);
             $this->dispatch(
@@ -82,7 +82,7 @@ class Edit extends Component
     public function rules()
     {
         return [
-            'code' => 'required|string|max:255',
+            'code' => 'required|string|max:255|unique:users,code,' . $this->user->id,
             'name' => 'required|string|max:255',
             'date_of_birth' => 'required|date_format:Y-m-d',
             'identity_card' => 'required|numeric|digits:12',

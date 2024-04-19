@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-8 d-flex align-items-strech">
             <div class="card w-100">
                 <div class="card-body">
@@ -271,55 +271,148 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Thống kê</h1>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border2 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Tất cả tài sản</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countEquipment }} tài sản</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border3 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Tài sản đang cấp phát</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countAllocation }} tài sản</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border4 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tài sản đã hỏng
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                            {{ $countBrokenEquipment }} tài sản</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border1 shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+
+                                    Đã thu hồi</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countDispensing }} tài sản</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-12 d-flex align-items-stretch">
-            <div class="card w-100">
-                <div class="card-body p-4">
-                    <h5 class="card-title fw-semibold mb-4">Recent Transactions</h5>
+            <div class="card w-100 mx-3">
+                <div class="card-body p-4 shadow-lg">
+                    <h5 class="card-title fw-semibold mb-4">Cấp phát gần đây</h5>
                     <div class="table-responsive">
-                        <table class="table text-nowrap mb-0 align-middle">
+                        <table class="table text-nowrap table-bordered mb-0 align-middle">
                             <thead class="text-dark fs-4">
                                 <tr>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Id</h6>
+                                        <h6 class="fw-semibold mb-0">STT</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Assigned</h6>
+                                        <h6 class="fw-semibold mb-0">Tên tài sản</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Name</h6>
+                                        <h6 class="fw-semibold mb-0">Người nhận</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Priority</h6>
+                                        <h6 class="fw-semibold mb-0">Trạng thái cấp phát</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Budget</h6>
+                                        <h6 class="fw-semibold mb-0">Ngày cấp phát</h6>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">1</h6>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                                        <span class="fw-normal">Web Designer</span>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <p class="mb-0 fw-normal">Elite Admin</p>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                                        </div>
-                                    </td>
-                                    <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                                    </td>
-                                </tr>
-                                <tr>
+                                @php
+                                    $i = 1;
+                                @endphp
+                                @foreach ($allocations as $data)
+                                    <tr>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">
+                                                {{ $i }}
+                                            </h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-1">{{ $data->getEquipment()->name }}</h6>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <p class="mb-0 fw-normal">{{ $data->getUser() }}</p>
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            @if ($data->status == 1)
+                                                <span class="badge text-bg-success" style="width: 150px">Đang cấp
+                                                    phát</span>
+                                            @else
+                                                <span class="badge text-bg-danger" style="width: 150px">Đã huỷ cấp
+                                                    phát</span>
+                                            @endif
+                                        </td>
+                                        <td class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0 fs-4">
+                                                {{ date('d/m/Y', strtotime($data->created_at)) }}
+                                            </h6>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                @endforeach
+
+                                {{-- <tr>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">2</h6>
                                     </td>
@@ -378,7 +471,7 @@
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -386,130 +479,3 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                    <a href="javascript:void(0)"><img src="../assets/images/products/s4.jpg"
-                            class="card-img-top rounded-0" alt="..."></a>
-                    <a href="javascript:void(0)"
-                        class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                            class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                    <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$50 <span
-                                class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                    <a href="javascript:void(0)"><img src="../assets/images/products/s5.jpg"
-                            class="card-img-top rounded-0" alt="..."></a>
-                    <a href="javascript:void(0)"
-                        class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                            class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                    <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$650 <span
-                                class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                    <a href="javascript:void(0)"><img src="../assets/images/products/s7.jpg"
-                            class="card-img-top rounded-0" alt="..."></a>
-                    <a href="javascript:void(0)"
-                        class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                            class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                    <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$150 <span
-                                class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-                <div class="position-relative">
-                    <a href="javascript:void(0)"><img src="../assets/images/products/s11.jpg"
-                            class="card-img-top rounded-0" alt="..."></a>
-                    <a href="javascript:void(0)"
-                        class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3"
-                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
-                            class="ti ti-basket fs-4"></i></a>
-                </div>
-                <div class="card-body pt-3 p-4">
-                    <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h6 class="fw-semibold fs-4 mb-0">$285 <span
-                                class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
-                        <ul class="list-unstyled d-flex align-items-center mb-0">
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="me-1" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                            <li><a class="" href="javascript:void(0)"><i
-                                        class="ti ti-star text-warning"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

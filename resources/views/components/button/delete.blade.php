@@ -1,3 +1,3 @@
-@props(['action', 'id'])
+@props(['action', 'id', 'icon' => 'ti ti-trash'])
 <button class="btn btn-danger" wire:click.prevent='{{ $action }}("{{ $id }}")'><i
-        class="ti ti-trash"></i></button>
+        class="{{$icon}}"></i></button>

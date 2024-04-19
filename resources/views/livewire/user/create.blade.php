@@ -4,7 +4,7 @@
             <div class="card w-100">
                 <div class="card-body p-4">
                     <h5 class="card-title fw-semibold mb-4">Thêm mới tài khoản</h5>
-                    <form wire:submit='createUser'>
+                    <form wire:submit.prevent='createUser'>
                         <div class="d-flex justify-content-between">
                             <div class="col-5">
                                 <x-form.input :label="'Mã nhân viên'" :type="'text'" :wire_model="'code'"

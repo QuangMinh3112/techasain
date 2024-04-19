@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EquipmentType>
  */
 class EquipmentTypeFactory extends Factory
 {
@@ -14,17 +14,13 @@ class EquipmentTypeFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = \App\Models\equipment_type::class;
-
     public function definition(): array
     {
         return [
-            //
-            'code' => fake()->name(),
             'name' => fake()->name(),
-            'description' => fake()->paragraph(3),
-            'created_by' => fake()->numberBetween(1, 100),
-            'status' => fake()->randomElement([0, 1]),
+            'created_by' => fake()->numberBetween(1, 11),
+            'status' => 1,
+            'created_at' => fake()->dateTimeBetween('-30 years', 'now')
         ];
     }
 }

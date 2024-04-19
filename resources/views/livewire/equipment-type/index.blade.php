@@ -3,19 +3,53 @@
         <div class="col-12 d-flex align-items-stretch">
             <div class="card w-100">
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-semibold mb-4">Danh sách loại thiết bị</h5>
-                    <div class="row d-flex">
-                        <div class="col-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text bg-light border border-end-0">
-                                    <i class="ti ti-search"></i>
-                                </span>
-                                <input type="text" class="form-control border border-start-0"
-                                    placeholder="Nhập họ tên, tên đăng nhập">
+                    <h5 class="card-title fw-semibold mb-4">Tìm kiếm loại tài sản</h5>
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <form wire:submit='searchEquipmentCategory'>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="col-5">
+                                            <div class="mb-3">
+                                                <x-form.input :label="'Mã loại tài sản'" :type="'text'" :wire_model="'code'"
+                                                    :error="''" />
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <x-form.input :label="'Tên loại tài sản'" :type="'text'" :wire_model="'name'"
+                                                :error="''" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="col-5">
+                                            <x-form.select-option :label="'Kiểu thiết bị'" :wire_model="'equipment_type'" :options="$equipment_types"
+                                                :error="''" />
+                                        </div>
+                                        <div class="col-5 ">
+                                            <div class="mb-3">
+                                                @livewire('user.user-search-bar')
+                                            </div>
+                                            <div class="d-flex float-end gap-3">
+                                                <button wire:click.prevent='resetSearch'
+                                                    class="btn btn-secondary border"><i class="ti ti-reload"></i>Đặt lại
+                                                    bộ
+                                                    lọc</button>
+                                                <button class="btn btn-primary" type="submit"><i
+                                                        class="ti ti-search"></i>Tìm
+                                                    kiếm</button>
+                                            </div>
+                                        </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex gap-3 float-end">
+                        <div class="px-2 my-3">
+                            <div class="border-bottom"></div>
+                        </div>
+                        <div class="col-12 mb-3 d-flex justify-content-between">
+                            <div>
+                                <h5 class="">Danh sách loại tài sản</h5>
+                            </div>
+                            <div class="d-flex gap-3">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info">Hành động</button>
                                     <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
@@ -40,38 +74,38 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <x-button.create :route="'admin.user.create'" :name="'Thêm mới'"></x-button.create>
+                                <x-button.create :route="'admin.equipment_type.create'" :name="'Thêm mới'"></x-button.create>
                             </div>
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap mb-0 align-middle table-hover">
+                        <table class="table text-nowrap mb-0 align-middle table-hover table-bordered">
                             <thead class="text-dark fs-4 bg-secondary-subtle">
                                 <tr>
                                     <th class="border-bottom-0">
                                         <input class="form-check-input mt-0" type="checkbox" wire:model.live='selectAll'
                                             wire:click.live="updateSelectAll()">
                                         <input class="form-check-input mt-0" type="hidden" wire:model.live='firstId'
-                                            value="{{ $users[0]->id }}">
+                                            value="{{ $firstId }}">
 
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">STT</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Họ và tên</h6>
+                                        <h6 class="fw-semibold mb-0">Mã tài sản</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Tên đăng nhập</h6>
+                                        <h6 class="fw-semibold mb-0">Tên loại tài sản</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Trạng thái</h6>
+                                        <h6 class="fw-semibold mb-0">Phân loại</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Người cập nhật</h6>
+                                        <h6 class="fw-semibold mb-0">Ngày tạo</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Thời gian cập nhật</h6>
+                                        <h6 class="fw-semibold mb-0">Người tạo</h6>
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">Thao tác</h6>
@@ -79,43 +113,48 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $index => $data)
-                                    <tr>
-                                        <td class="border-bottom-0">
-                                            <input class="form-check-input mt-0" type="checkbox"
-                                                wire:model.live='mySelect' value="{{ $data->id }}"
-                                                wire:click.live="updateMySelect()">
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">
-                                                {{ $users->firstItem() + $index }}
-                                            </h6>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-1">{{ $data->name }}</h6>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->email }}</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            @if ($data->status == 0)
-                                                <span class="badge text-bg-dark">Ngừng hoạt động</span>
-                                            @else
-                                                <span class="badge text-bg-success">Đang hoạt động</span>
-                                            @endif
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->getUser() }}</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <p class="mb-0 fw-normal">{{ $data->updated_at->format('d/m/Y') }}</p>
-                                        </td>
-                                        <td class="border-bottom-0">
-                                            <x-button.edit :route="'admin.user.edit'" :id="$data->id"></x-button.edit>
-                                            <x-button.delete :action="'deleteUser'" :id="$data->id"></x-button.delete>
+                                @if (count($equipment_categories) > 0)
+                                    @foreach ($equipment_categories as $index => $data)
+                                        <tr>
+                                            <td class="border-bottom-0">
+                                                <input class="form-check-input mt-0" type="checkbox"
+                                                    wire:model.live='mySelect' value="{{ $data->id }}"
+                                                    wire:click.live="updateMySelect()">
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">
+                                                    {{ $equipment_categories->firstItem() + $index }}
+                                                </h6>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal"><b>{{ $data->code }}</b></p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal"><b>{{ $data->name }}</b></p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal"><b>{{ $data->getEquipmentType() }}</b></p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal">{{ $data->created_at->format('d/m/Y') }}</p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <p class="mb-0 fw-normal">{{ $data->getUser() }}</p>
+                                            </td>
+                                            <td class="border-bottom-0">
+                                                <x-button.edit :route="'admin.equipment_type.edit'" :id="$data->id"></x-button.edit>
+                                                <x-button.delete :action="'deleteEquipmentCategory'"
+                                                    :id="$data->id"></x-button.delete>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr class="text-center">
+                                        <td colspan="8">
+                                            Không có dữ liệu
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -136,12 +175,13 @@
                             </div>
                             <div class="flex space-x-4 items-center">
                                 <div class="flex items-center">
-                                    {{ $users->links('Layout.app.livewire-pagination') }}
+                                    {{ $equipment_categories->links('Layout.app.livewire-pagination') }}
                                 </div>
                                 <span class="float-end">
                                     <h6>
-                                        Hiển thị {{ $users->firstItem() }} - {{ $users->lastItem() }} của
-                                        {{ $users->total() }} kết quả
+                                        Hiển thị {{ $equipment_categories->firstItem() }} -
+                                        {{ $equipment_categories->lastItem() }} của
+                                        {{ $equipment_categories->total() }} kết quả
                                     </h6>
                                 </span>
                             </div>

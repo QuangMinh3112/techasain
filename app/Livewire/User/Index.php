@@ -17,7 +17,7 @@ class Index extends Component
 {
     use WithPagination;
     public $page = 10;
-
+    public $name;
 
     public $mySelect = [];
     public $selectAll = false;
@@ -26,7 +26,7 @@ class Index extends Component
 
     public function render()
     {
-        $users = User::paginate($this->page);
+        $users = User::nameSearch($this->name)->where('status', 1)->paginate($this->page);
         $this->firstId = $users[0]->id;
         return view('livewire.user.index', [
             'users' => $users
@@ -45,13 +45,14 @@ class Index extends Component
             method: 'deleted',
         );
     }
-
     #[On('deleted')]
     public function deleteConfirmed($id)
     {
         $user = User::find($id);
         if ($user) {
-            $user->delete();
+            $user->update([
+                'status' => 0,
+            ]);
         }
     }
     #[On('resetMySelect')]
@@ -71,7 +72,9 @@ class Index extends Component
     public function updateSelectAll()
     {
         if ($this->selectAll == true) {
-            $this->mySelect = User::where('id', '>=', $this->firstId)
+            $this->mySelect = User::nameSearch($this->name)
+                ->where('id', '>=', $this->firstId)
+                ->where('status', 1)
                 ->orderBy('id', 'asc')
                 ->limit($this->page)
                 ->pluck('id');
@@ -105,7 +108,7 @@ class Index extends Component
     #[On('deletedAll')]
     public function deletedAll($id)
     {
-        User::destroy($id);
+        User::whereIn('id', $id)->update(['status' => 0]);
         $this->resetMySelect();
     }
 }

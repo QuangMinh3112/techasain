@@ -14,6 +14,7 @@ class Delete extends Component
     public function __construct()
     {
         //
+
     }
 
     /**

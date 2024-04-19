@@ -26,6 +26,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!--===============================================================================================-->
     <wireui:scripts />
     <script src="//unpkg.com/alpinejs" defer></script>

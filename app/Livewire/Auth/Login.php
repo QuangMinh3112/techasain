@@ -15,17 +15,30 @@ class Login extends Component
 {
     public $email;
     public $password;
+    public $errors;
+    public $show = false;
     public function render()
     {
         return view('livewire.auth.login');
     }
     public function loginProcess()
     {
-        if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            // dd('Success');
-            return redirect()->route('admin.home');
+        if ($this->email == '' || $this->password == '') {
+            $this->errors = "Không để trống thông tin";
+            $this->show = true;
         } else {
-            dd('sai tk hoac mk');
+            if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+                return redirect()->route('admin.home');
+            } else {
+                $this->errors = "Sai tài khoản hoặc mật khẩu";
+                $this->show = true;
+            }
+        }
+    }
+    public function closeAlert()
+    {
+        if ($this->show == true) {
+            $this->show = false;
         }
     }
 }

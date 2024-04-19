@@ -16,15 +16,17 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(100)->create();
         \App\Models\supplier::factory(100)->create();
-        // \App\Models\equipment_type::factory(100)->create();
-
-
+        \App\Models\EquipmentType::factory(30)->create();
+        \App\Models\Equipment::factory(200)->create();
+        \App\Models\allocation::factory(100)->create();
+        \App\Models\EquipmentCategory::factory(100)->create();
         DB::table('users')->insert([
             'code' => 'ADMIN',
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin',
             'password' => Hash::make('1'),
-            'updated_at' => now()
+            'updated_at' => now(),
+            'status' => 1
         ]);
     }
 }

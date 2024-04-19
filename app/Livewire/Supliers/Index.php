@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Supliers;
 
-use App\Models\supplier;
+use App\Models\supplier as Supplier;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
@@ -16,15 +16,15 @@ class Index extends Component
 {
     use WithPagination;
     public $page = 10;
+    public $name;
 
     public $mySelect = [];
     public $selectAll = false;
     public $firstId = null;
-
     public function render()
     {
 
-        $suppliers = supplier::paginate($this->page);
+        $suppliers = Supplier::nameSearch($this->name)->where('status', 1)->paginate($this->page);
         $this->firstId = $suppliers[0]->id;
         return view('livewire.supliers.index', [
             'suppliers' => $suppliers,
@@ -68,7 +68,9 @@ class Index extends Component
     public function updateSelectAll()
     {
         if ($this->selectAll == true) {
-            $this->mySelect = supplier::where('id', '>=', $this->firstId)
+            $this->mySelect = supplier::nameSearch($this->name)
+                ->where('id', '>=', $this->firstId)
+                ->where('status', 1)
                 ->orderBy('id', 'asc')
                 ->limit($this->page)
                 ->pluck('id');

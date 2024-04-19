@@ -11,7 +11,7 @@
                                     <i class="ti ti-search"></i>
                                 </span>
                                 <input type="text" class="form-control border border-start-0"
-                                    placeholder="Nhập họ tên, tên đăng nhập">
+                                    placeholder="Nhập họ tên, tên đăng nhập" wire:model.live='name'>
                             </div>
                         </div>
                         <div class="col-6">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-nowrap mb-0 align-middle table-hover">
+                        <table class="table text-nowrap mb-0 align-middle table-hover table-bordered">
                             <thead class="text-dark fs-4 bg-secondary-subtle">
                                 <tr>
                                     <th class="border-bottom-0">
@@ -53,7 +53,6 @@
                                             wire:click.live="updateSelectAll()">
                                         <input class="form-check-input mt-0" type="hidden" wire:model.live='firstId'
                                             value="{{ $users[0]->id }}">
-
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">STT</h6>

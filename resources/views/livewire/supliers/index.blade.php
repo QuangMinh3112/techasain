@@ -3,7 +3,7 @@
         <div class="col-12 d-flex align-items-stretch">
             <div class="card w-100">
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-semibold mb-4">Danh sách tài khoản</h5>
+                    <h5 class="card-title fw-semibold mb-4">Danh sách nhà cung cấp</h5>
                     <div class="row d-flex">
                         <div class="col-6">
                             <div class="input-group mb-3">
@@ -11,7 +11,7 @@
                                     <i class="ti ti-search"></i>
                                 </span>
                                 <input type="text" class="form-control border border-start-0"
-                                    placeholder="Nhập họ tên, tên đăng nhập">
+                                    placeholder="Tìm tên nhà sản xuất" wire:model.live='name'>
                             </div>
                         </div>
                         <div class="col-6">
@@ -44,8 +44,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table text-nowrap mb-0 align-middle table-hover">
+                    <div class="table-responsive ">
+                        <table class="table text-nowrap mb-0 align-middle table-hover table-bordered">
                             <thead class="text-dark fs-4 bg-secondary-subtle">
                                 <tr>
                                     <th class="border-bottom-0">

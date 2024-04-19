@@ -16,15 +16,12 @@ return new class extends Migration
             $table->integer('equipment_id');
             $table->integer('object');
             $table->integer('reciver_id');
+            $table->integer('status')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('allocations');

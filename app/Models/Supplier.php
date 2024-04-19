@@ -27,4 +27,8 @@ class supplier extends Model
             return "Rỗng";
         }
     }
+    public function scopeNameSearch($query, $value)
+    {
+        $query->where('name', 'like', '%' . $value . '%');
+    }
 }

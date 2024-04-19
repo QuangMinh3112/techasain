@@ -3,21 +3,19 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-more"
-                    style="background-image: url('https://dichvudigitalmarketing.vn/wp-content/uploads/2023/10/phan-mem-quan-ly-phong-kham-nhi-3.jpg');">
+                    style="background-image: url('{{asset('auth/images/bg.jpg')}}');">
                 </div>
                 <form class="login100-form validate-form" wire:submit="loginProcess">
                     <span class="login100-form-title p-b-43">
                         Đăng nhập
                     </span>
-                    <div class="wrap-input100">
-                        <input class="input100" type="text" wire:model='email'>
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Tài khoản</span>
+                    <div class="mb-3">
+                        <label class="form-label">Tài khoản</label>
+                        <input class="form-control p-3" type="text" wire:model='email'>
                     </div>
-                    <div class="wrap-input100">
-                        <input class="input100" type="password" wire:model='password'>
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Mật khẩu</span>
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu</label>
+                        <input class="form-control p-3" type="password" wire:model='password'>
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -25,7 +23,18 @@
                             Đăng nhập
                         </button>
                     </div>
+                    @if ($show == true)
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <div class="d-flex justify-content-between">
+                                <div class="">{{ $errors }}</div>
+                                <div class="">
+                                    <i class="bi bi-x" wire:click='closeAlert()'></i>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </form>
+
             </div>
         </div>
     </div>

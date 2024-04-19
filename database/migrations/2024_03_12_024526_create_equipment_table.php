@@ -13,19 +13,22 @@ return new class extends Migration
     {
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('name');
-            $table->integer('equipment_type_id');
-            $table->integer('allocation_status');
-            $table->integer('equipment_status');
-            $table->dateTime('warranty_period');
-            $table->integer('user_id');
-            $table->integer('supplier_id');
-            $table->dateTime('purchase_date');
-            $table->text('equipment_description');
-            $table->text('note');
-            $table->integer('status');
-            $table->integer('created_by');
+            $table->string('code')->nullable(); // mã tb
+            $table->integer('name_id')->nullable(); // tên tb
+            $table->integer('supplier_id')->nullable(); // nhà cung cấp
+            $table->string('entry_code')->nullable(); // mã nhập
+            $table->string('promissory_code')->nullable(); // phiếu nhập
+            $table->integer('price')->nullable(); // nhà cung cấp
+            $table->integer('equipment_type_id')->nullable(); // loại tb
+            $table->string('serial')->nullable(); // số seri
+            $table->integer('use_status')->nullable(); // trạng thái tb
+            $table->date('purchase_date')->nullable(); // ngày mua
+            $table->date('warranty_period')->nullable(); // hạn bảo hành
+            $table->integer('user_id')->nullable(); // người mua
+            $table->text('description')->nullable(); // mô tả thiết bị
+            $table->text('note')->nullable(); // ghi chú
+            $table->integer('status')->nullable(); //trạng thái (hoạt động / ngừng hoạt động)
+            $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
         });

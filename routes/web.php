@@ -32,6 +32,19 @@ Route::prefix('admin')->middleware(['checkLogin'])->group(function () {
     Route::get('equipment-type', App\Livewire\EquipmentType\Index::class)->name('admin.equipment_type.list');
     Route::get('equipment-type/create', App\Livewire\EquipmentType\Create::class)->name('admin.equipment_type.create');
     Route::get('equipment-type/edit/{id}', App\Livewire\EquipmentType\Edit::class)->name('admin.equipment_type.edit');
+    // EQUIPMENT
+    Route::get('equipment', App\Livewire\Equipment\Index::class)->name('admin.equipment.list');
+    Route::get('equipment/create', App\Livewire\Equipment\Create::class)->name('admin.equipment.create');
+    Route::get('equipment/edit/{id}', App\Livewire\Equipment\Edit::class)->name('admin.equipment.edit');
+    // ALLOCATION
+    Route::get('allocation', App\Livewire\Allocation\Index::class)->name('admin.allocation.list');
+    Route::get('allocation/issued', App\Livewire\Allocation\Index1::class)->name('admin.allocation.issued');
+    Route::get('allocation/history', App\Livewire\Allocation\History::class)->name('admin.allocation.history');
+    Route::get('allocation/create/{id}', App\Livewire\Allocation\Create::class)->name('admin.allocation.create');
+    Route::get('allocation/edit/{id}', App\Livewire\Allocation\Edit::class)->name('admin.allocation.edit');
+    Route::get('allocation/view/{id}', App\Livewire\Allocation\View::class)->name('admin.allocation.view');
+    Route::get('allocation/view-history/{id}', App\Livewire\Allocation\ViewHistory::class)->name('admin.allocation.viewHistory');
 
-    Route::get('log-out', App\Livewire\Auth\Logout::class)->name('auth.logout');
+    // LOGOUT
+    Route::get('log-out', [App\Http\Controllers\Auth\Logout::class, 'logOut'])->name('auth.logout');
 });
